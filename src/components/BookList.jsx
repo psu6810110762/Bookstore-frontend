@@ -1,6 +1,7 @@
 export default function BookList(props) {
+
   const generateRows = () => {
-    if (props.data) {
+    if (props.data != null) {
       return props.data.map(book => (
         <tr key={book.id}>
           <td>{book.title}</td>
@@ -9,8 +10,14 @@ export default function BookList(props) {
           <td>{book.price}</td>
           <td>{book.isbn}</td>
           <td>{book.stock}</td>
+          <td>
+            <button onClick={() => alert(JSON.stringify(book))}>Debug</button>
+          </td>
         </tr>
       ))
+    }
+    else {
+      return null;
     }
   }
 
@@ -24,11 +31,10 @@ export default function BookList(props) {
           <th>Price</th>
           <th>ISBN</th>
           <th>Stock</th>
+          <th>Action</th>
         </tr>
       </thead>
-      <tbody>
-        {generateRows()} 
-      </tbody>
+      <tbody>{generateRows()}</tbody>
     </table>
   )
 }
